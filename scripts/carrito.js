@@ -27,7 +27,7 @@ function carritoAHtml() {
       tabla.className = "table";
       tabla.innerHTML = ` 
               <tr>
-              <td><img src=${array[i].foto} alt=${array[i].descripcion}</img></td>
+              <td><img class="img-card" src=${array[i].foto} alt=${array[i].descripcion}</img></td>
               <td>${array[i].descripcion}</td>
               <td>${array[i].marca}</td>
               <td>${array[i].presentacion}</td>
@@ -58,7 +58,7 @@ function grabarCarrito(carritoDeCompra) {
 
 function eliminarProductoDelCarrito(id) {
   let arrCarrito = obtenerCarrito();
-  let prod = carritoDeCompra.find((p) => p.id == id);
+  let prod = arrCarrito.find((p) => p.id == id);
   Toastify({
     text: " PRODUCTO ELIMINADO DEL CARRITO",
     className: "info",

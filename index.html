@@ -16,7 +16,9 @@
   </script>
   <!-- INTEGRACIÓN CSS -->
   <link rel="stylesheet" href="./css/styles.css">
+  <!-- INTEGRACION TOASTIFY Y SWIPER -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
   <!-- TÍTULO DE LA PÁGINA -->
   <title>HOME</title>
 
@@ -56,7 +58,21 @@
 
 
   <main>
-    <H1>PRODUCTOS EN OFERTA</H1>
+      <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/image/sl001.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl002.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl003.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl004.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl005.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl006.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl007.jpg"/></div>
+        <div class="swiper-slide"><img src="assets/image/sl008.jpg"/></div>
+      </div>
+     
+    </div>
+    <h2>PRODUCTOS EN OFERTA</h2>
+
     <div class="listadoProductosOferta container-fluid d-flex justify-content-between">
     </div>
   </main>
@@ -76,6 +92,7 @@
   <script src="./scripts/main.js"></script>
   <script src="./scripts/index.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 </body>
 

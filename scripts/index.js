@@ -40,7 +40,7 @@ function cardAHtml(arrayProd) {
     card.className = "card";
     card.innerHTML = `
           <div class="container-img">
-              <img src=${array[i].foto} alt=${array[i].descripcion} >
+              <img class="img-card" src=${array[i].foto} alt=${array[i].descripcion} >
               </div>
               <h4>
                   ${array[i].descripcion}
@@ -55,7 +55,7 @@ function cardAHtml(arrayProd) {
                  $ ${array[i].precio}
               </h4>
               
-              <button id=${array[i].id} onclick="agragarProductoACarrito(${array[i].id})" >
+              <button id=${array[i].id} onclick="agragarProductoACarrito('${array[i].id}')" >
                 Añadir
               </button>
           `;
@@ -122,3 +122,39 @@ function agregarAlCarrito(producto) {
     grabarCarrito(arrCarrito);
   }
 }
+
+// SWIPER
+
+// var swiper = new swiper(".mySwiper", {
+//   spaceBetween: 30,
+//   effect: "fade",
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: false,
+//   },
+// });
+setTimeout(() => {
+  
+
+var swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  effect: "fade",
+  centeredSlides: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+})
+}, 1000);
