@@ -10,11 +10,13 @@
   <!-- INTEGRACIÓN BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <!-- INTEGRACIÓN CSS -->
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <!-- TÍTULO DE LA PÁGINA -->
   <title>HOME</title>
 
@@ -35,7 +37,7 @@
             <a class="nav-link active" aria-current="page" href="./index.html">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pages/carrito.html">CARRITO</a>
+            <a class="nav-link" href="./pages/carrito.html">CARRITO <span id="cantidadCarrito">0</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./pages/contacto.html">CONTACTO</a>
@@ -47,15 +49,15 @@
       </div>
     </div>
     <div class="btn-group bg-light">
-      <button id="boton-modo">Modo oscuro</button>
+      <button id="boton-modo">Modo Oscuro</button>
     </div>
-    
+
   </nav>
 
 
   <main>
     <H1>PRODUCTOS EN OFERTA</H1>
-    <div class="listadoProductosOferta">
+    <div class="listadoProductosOferta container-fluid d-flex justify-content-between">
     </div>
   </main>
 
@@ -69,10 +71,12 @@
       <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
       <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
     </div>
-
   </footer>
+
   <script src="./scripts/main.js"></script>
   <script src="./scripts/index.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </body>
 
 </html>

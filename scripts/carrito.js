@@ -4,35 +4,43 @@ localStorage.setItem;
 
 function carritoAHtml() {
   let array = obtenerCarrito();
+
   const contenedor = document.querySelector(".listadoCarrito");
-  contenedor.innerHTML = ''
-  if (array === null) {
-    let mensaje = document.getElementById(".listadoCarrito");
-    mensaje.innerHTML = "Su carrito se encuentra vacio";
+  contenedor.innerHTML = "";
+  if (array.length == 0) {
+    totalCarrito = 0;
+
+    var mensaje = document.getElementById("carritoVacio");
+    mensaje.innerHTML = "Su carrito se encuentra vacío!";
+    mensaje.innerHTML = "Su carrito se encuentra vacío!";
+
+    var botonEliminarCarrito = document.getElementById("boton-vaciar");
+    botonEliminarCarrito.remove();
+
+    var botonFinalizarCarrito = document.getElementById("boton-finalizar");
+    botonFinalizarCarrito.remove();
+    // var mensajeTotal = document.getElementById('totalCarrito');
+    // mensajeTotal.remove();
   } else {
     for (let i = 0; i < array.length; i++) {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-              <img src=${array[i].foto} alt=${array[i].descripcion} >
-              <h4>
-                  ${array[i].descripcion}
-              <h4>
-              <h5>
-                  ${array[i].marca}
-              <h5>
-              <H5>
-                  ${array[i].presentacion}
-              <h5>
-              <h4>
-                 $ ${array[i].precio}
-              <h4>
-              <button id=${array[i].id} onclick="eliminarProductoDelCarrito(${array[i].id.toString()})">
-                  Eliminar
-              </button>
-          `;
-      contenedor.appendChild(card);
+      const tabla = document.createElement("table");
+      tabla.className = "table";
+      tabla.innerHTML = ` 
+              <tr>
+              <td><img src=${array[i].foto} alt=${array[i].descripcion}</img></td>
+              <td>${array[i].descripcion}</td>
+              <td>${array[i].marca}</td>
+              <td>${array[i].presentacion}</td>
+              <td> $ ${array[i].precio}</td>
+              <td> Cantidad: ${array[i].cant}</td>
+              <td><button id {...array[i].id} onclick="eliminarProductoDelCarrito(${array[i].id.toString()})">Eliminar</button></td>
+              <tr>
+              `;
+      contenedor.appendChild(tabla);
     }
+    // const totalCarrito = carritoDeCompra.precio.reduce((acum, num) => acum + num, 0);
+    //   var mensajeCarrito = document.getElementById('totalCarrito');
+    //   mensajeCarrito.innerHTML = 'El total de su compra es $ '+totalCarrito;
   }
 }
 carritoAHtml();
@@ -50,8 +58,31 @@ function grabarCarrito(carritoDeCompra) {
 
 function eliminarProductoDelCarrito(id) {
   let arrCarrito = obtenerCarrito();
-  let prod = arrCarrito.find((p) => p.id == id)
-  arrCarrito.splice(arrCarrito.indexOf(prod),1);
+  let prod = carritoDeCompra.find((p) => p.id == id);
+  Toastify({
+    text: " PRODUCTO ELIMINADO DEL CARRITO",
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #f10f32, #db6678)",
+    },
+  }).showToast();
+  arrCarrito.splice(arrCarrito.indexOf(prod), 1);
+
   grabarCarrito(arrCarrito);
-  carritoAHtml();
+  carritoAHtml(arrCarrito);
+}
+
+// FUNCION ELIMINAR TODOS LOS ELEMENTOS DEL CARRITO
+
+const botonVaciarCarrito = document.querySelector("#boton-vaciar");
+botonVaciarCarrito.addEventListener("click", () => {
+  vaciarCarrito();
+});
+
+function vaciarCarrito() {
+  let arrCarrito = obtenerCarrito();
+  arrCarrito.length = 0;
+
+  grabarCarrito(arrCarrito);
+  carritoAHtml(arrCarrito);
 }

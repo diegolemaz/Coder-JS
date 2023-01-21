@@ -1,162 +1,34 @@
-class Producto {
-  constructor(
-    id,
-    descripcion,
-    marca,
-    presentacion,
-    categoria,
-    precio,
-    oferta,
-    foto,
-    fechaVto
-  ) {
-    this.id = id;
-    this.descripcion = descripcion.toUpperCase();
-    this.marca = marca.toUpperCase();
-    this.presentacion = presentacion.toUpperCase();
-    this.categoria = categoria.toUpperCase();
-    this.precio = precio;
-    this.oferta = oferta;
-    this.foto = foto;
-    this.fechaVto = new Date(fechaVto);
-  }
-}
+// --------------FETCH JSON ----------------
 
-const productos = [];
-productos.push(
-  new Producto(
-    "001",
-    "Cerveza",
-    "Budwisser",
-    "355 ml",
-    "Cervezas",
-    "45",
-    true,
-    "../assets/image/001.png"
-  )
-);
-productos.push(
-  new Producto(
-    "002",
-    "Cerveza",
-    "Corona",
-    "355 ml",
-    "Cervezas",
-    "55",
-    false,
-    "../assets/image/002.png"
-  )
-);
-productos.push(
-  new Producto(
-    "003",
-    "Cerveza",
-    "Coronita",
-    "210 ml",
-    "Cervezas",
-    "30",
-    false,
-    "../assets/image/003.png"
-  )
-);
-productos.push(
-  new Producto(
-    "004",
-    "Cerveza Ipa",
-    "Goose Island",
-    "473 ml",
-    "Cervezas",
-    "49",
-    false,
-    "../assets/image/004.png"
-  )
-);
-productos.push(
-  new Producto("005", "Cerveza", "Patricia", "473 ml", "Cervezas", "49", true, "../assets/image/005.png")
-);
-productos.push(
-  new Producto(
-    "006",
-    "Cerveza",
-    "Patricia",
-    "(Env. ret.) 340 ml",
-    "Cervezas",
-    "25",
-    true,
-    "../assets/image/006.png"
-  )
-);
-productos.push(
-  new Producto("007", "Cerveza", "Zillertal", "473 ml", "Cervezas", "53", false, "../assets/image/007.png")
-);
-productos.push(
-  new Producto(
-    "008",
-    "Aperitivo",
-    "Campari",
-    "750 ml",
-    "Aperitivos",
-    "600",
-    true,
-    "../assets/image/008.png"
-  
-  )
-);
-productos.push(
-  new Producto(
-    "009",
-    "Gin tonic",
-    "Dr Lemon",
-    "lata 310 ml",
-    "Tragos",
-    "150",
-    true,"../assets/image/009.png"
-  )
-);
-productos.push(
-  new Producto("010", "Fernet", "Branca", "750 ml", "Aperitivos", "300", true, "../assets/image/010.png")
-);
-productos.push(
-  new Producto("011", "Gin", "Alquimista", "500 ml", "Blancas", "600", false, "../assets/image/011.png")
-);
-productos.push(
-  new Producto("012", "Gin", "Gordons", "500 ml", "Blancas", "600", false, "../assets/image/012.png")
-);
-productos.push(
-  new Producto("013", "Gin", "Tanqueray", "750 ml", "Blancas", "600", false, "../assets/image/013.png")
-);
-productos.push(
-  new Producto(
-    "014",
-    "Licor",
-    "Jagermeifter",
-    "700 ml",
-    "Licores",
-    "600",
-    false,
-    "../assets/image/014.png"
-  )
-);
-productos.push(
-  new Producto(
-    "015",
-    "Ron Añejo Especial",
-    "Havana",
-    "750 ml",
-    "Blancas",
-    "800",
-    false,
-    "../assets/image/015.png"
-  )
-);
-productos.push(
-  new Producto("016", "Vodka", "Smirnoff", "750 ml", "Blancas", "600", true, "../assets/image/016.png")
-);
+let productos = [];
+fetch("../scripts/listado.json")
+  .then((response) => {
+    return response.json();
+  })
+
+  .then((data) => {
+    for (let i = 0; i < data.length; i++) {
+      productos[i] = data[i];
+    }
+  });
+
+// FUNCION CAMBIAR DE PRECIO DTO
+function cambiarPrecioDto(dto) {
+  productos.forEach((producto) => {
+    if (producto.oferta == true) {
+      producto.precio = producto.precio * ((100 - dto) / 100);
+      producto.descripcion = producto.descripcion + " (" + dto + "% Off)";
+    }
+  });
+}
+setTimeout(() => {
+  cambiarPrecioDto(10);
+}, 1000);
 
 // IMPRIMIR TODOS LOS PRODUCTOS
 function cardAHtml(array) {
   const contenedor = document.querySelector(".listadoProductos");
-  contenedor.innerHTML = ''
+  contenedor.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const card = document.createElement("div");
     card.className = "card";
@@ -184,8 +56,90 @@ function cardAHtml(array) {
     contenedor.appendChild(card);
   }
 }
+setTimeout(() => {
+  cardAHtml(productos);
+}, 1000);
 
-cardAHtml(productos);
+// FUNCION ORDENAR ARAY DESCRIPCION A-Z
+const botonOrdenarProductos = document.querySelector("#boton-ordenar");
+const ordenarListadoDesc = (prod1, prod2) => {
+  if (prod1.descripcion > prod2.descripcion) {
+    return 1;
+  }
+  if (prod1.descripcion < prod2.descripcion) {
+    return -1;
+  }
+  if ((prod1.descripcion = prod2.descripcion)) {
+    return 0;
+  }
+};
+
+setTimeout(() => {
+  let listadoOrdenado = productos.slice();
+  listadoOrdenado.sort(ordenarListadoDesc);
+  botonOrdenarProductos.addEventListener("click", () => {
+    cardAHtml(listadoOrdenado);
+  });
+}, 1000);
+
+// FUNCION ORDENAR ARAY DESCRIPCION Z-A
+const botonOrdenarProductos2 = document.querySelector("#boton-ordenar2");
+const ordenarListadoDesc2 = (prod1, prod2) => {
+  if (prod1.descripcion > prod2.descripcion) {
+    return -1;
+  }
+  if (prod1.descripcion < prod2.descripcion) {
+    return 1;
+  }
+  if ((prod1.descripcion = prod2.descripcion)) {
+    return 0;
+  }
+};
+setTimeout(() => {
+  let listadoOrdenado2 = productos.slice();
+  listadoOrdenado2.sort(ordenarListadoDesc2);
+  botonOrdenarProductos2.addEventListener("click", () =>
+    cardAHtml(listadoOrdenado2)
+  );
+}, 1000);
+
+// MOSTRAR SOLO PRODUCTOS EN OFERTAS
+const botonProductosOferta = document.querySelector("#boton-ofertas");
+const mostrarProductosOferta = (producto) => {
+  return producto.oferta == true;
+};
+setTimeout(() => {
+  let productosFiltradosOferta = productos.filter(mostrarProductosOferta);
+  botonProductosOferta.addEventListener("click", () => {
+    cardAHtml(productosFiltradosOferta);
+    console.log(productosFiltradosOferta);
+  });
+}, 1000);
+
+// BUSCAR Y MOSTRAR PRIMER ELEMENTO
+
+// Mostrar input en alerta
+// const alertaForm = document.querySelector("#alerta-form");
+// const alertaInput = document.querySelector("#alerta-input");
+
+// alertaForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     alert(alertaInput.value);
+//     alertaForm.reset();
+// });
+// setTimeout(() => {
+
+var encontrado = [];
+const botonBusqueda = document.querySelector("#boton-buscar");
+setTimeout(() => {
+  botonBusqueda.addEventListener("click", () => {
+    let productoBuscado = document.getElementById("#barraBusqueda").value;
+    encontrado = productos.filter(productoBuscado.toLocaleUpperCase());
+    encontrado.length == 0
+      ? (busqueda.innerHTML = "No se han encontrado productos.")
+      : cardAHtml(encontrado);
+  });
+}, 1000);
 
 // CARRITO
 function obtenerCarrito() {
@@ -193,24 +147,50 @@ function obtenerCarrito() {
   let arrCarrito = JSON.parse(jsonCarrito);
   return arrCarrito;
 }
-
 function grabarCarrito(carritoDeCompra) {
-    let jsonCarrito = JSON.stringify(carritoDeCompra);
-    localStorage.setItem("carrito", jsonCarrito);
+  let jsonCarrito = JSON.stringify(carritoDeCompra);
+  localStorage.setItem("carrito", jsonCarrito);
 }
-
 function agragarProductoACarrito(id) {
-  let prod = productos.find((p) => p.id == id)
+  let prod = productos.find((p) => p.id == id);
   agregarAlCarrito(prod);
 }
-function agregarAlCarrito (producto) {
-    let arrCarrito = obtenerCarrito();
-    if (arrCarrito == null) 
-      arrCarrito = [];
+function agregarAlCarrito(producto) {
+  let arrCarrito = obtenerCarrito();
+  if (arrCarrito == null) arrCarrito = [];
+  if (!arrCarrito.some((p) => p.id == producto.id)) {
+    Toastify({
+      text:
+        producto.descripcion +
+        " " +
+        producto.marca +
+        " " +
+        producto.presentacion +
+        " AGREGADO AL CARRITO",
+      className: "info",
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    arrCarrito.push(producto);
+    grabarCarrito(arrCarrito);
+  } else {
+    Toastify({
+      text:
+        producto.descripcion +
+        " " +
+        producto.marca +
+        " " +
+        producto.presentacion +
+        " AGREGADO AL CARRITO",
+      className: "info",
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
 
-    if (!arrCarrito.some((p) => p.id == producto.id)) {
-        arrCarrito.push(producto);
-        grabarCarrito(arrCarrito);
-        alert('Producto añadido correctamente')
-    } 
+    const indx = arrCarrito.findIndex((p) => p.id == producto.id);
+    arrCarrito[indx].cant++;
+    grabarCarrito(arrCarrito);
+  }
 }

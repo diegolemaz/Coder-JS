@@ -1,3 +1,8 @@
+/* ESTILOS MAIN */
+main {
+  min-height: 100vh;
+  }
+
 /* ESTILOS FOOTER */
 footer {
   color: rgb(239, 239, 239);
@@ -21,23 +26,30 @@ nav ul li a {
 }
   /* MODO OSCURO */
   .modo-oscuro {
-    background-color: #1b0737;
-    color: white;
+    background-color: #1b0737 !important;
+    color: white !important;
   }
 
-  /* ESTILOS TARJETAS PRODUCTOS */
+  /* ESTILOS CARDS PRODUCTOS */
   .card { 
-    width: 200px;
-    height: 350px;
+    width: 250px;
+    height: 400px;
     border: 1px solid rgb(177, 177, 177);
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    text-align: center;
     margin: 10px;
+    background-color: ghostwhite;
 }
+img {
+  width:130px !important;
+  margin: 5px;
+}
+
+/* CLASE CONTAINER */
 
 .container {
   display: flex;
@@ -46,6 +58,3 @@ nav ul li a {
   justify-content: center;
 }
 
-img {
-  width:130px !important;
-}

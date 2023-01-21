@@ -1,0 +1,162 @@
+[
+  {
+    "id": "001",
+    "descripcion": "Cerveza",
+    "marca": "Budwisser", 
+    "presentacion": "355 ml",
+    "precio": 45,
+    "oferta": true,
+    "foto": "../assets/image/001.png",
+    "cant": 1
+  },
+  {
+    "id": "002",
+    "descripcion": "Cerveza",
+    "marca": "Corona", 
+    "presentacion": "355 ml",
+    "precio": 55,
+    "oferta": false,
+    "foto": "../assets/image/002.png",
+    "cant": 1
+  },
+  {
+    "id": "003",
+    "descripcion": "Cerveza",
+    "marca": "Coronita", 
+    "presentacion": "210 ml",
+    "precio": 30,
+    "oferta": false,
+    "foto": "../assets/image/003.png",
+    "cant": 1
+  },
+  {
+    "id": "004",
+    "descripcion": "Cerveza Ipa",  
+    "marca": "Goose Island", 
+    "presentacion": "473 ml",
+    "precio": 49,
+    "oferta": false,
+    "foto": "../assets/image/004.png",
+    "cant": 1
+  },
+  {
+    "id": "005",
+    "descripcion": "Cerveza Lager",
+    "marca": "Patricia", 
+    "presentacion": "473 ml",
+    "precio": 48,
+    "oferta": true,
+    "foto": "../assets/image/005.png",
+    "cant": 1
+  },
+  {
+    "id": "006",
+    "descripcion": "Cerveza (Env. ret.)",
+    "marca": "Patricia", 
+    "presentacion": "340 ml",
+    "precio": 25,
+    "oferta": true,
+    "foto": "../assets/image/006.png",
+    "cant": 1
+  },
+  {
+    "id": "007",
+    "descripcion": "Cerveza",
+    "marca": "Zillertal", 
+    "presentacion": "473 ml",
+    "precio": 53,
+    "oferta": false,
+    "foto": "../assets/image/007.png",
+    "cant": 1
+  },
+  {
+    "id": "008",
+    "descripcion": "Aperitivo",
+    "marca": "Campari", 
+    "presentacion": "750 ml",
+    "precio": 600,
+    "oferta": true,
+    "foto": "../assets/image/008.png",
+    "cant": 1
+  },
+  {
+    "id": "009",
+    "descripcion": "Gin tonic",
+    "marca": "Dr Lemon", 
+    "presentacion": "lata 310 ml",
+    "precio": 150,
+    "oferta": true,
+    "foto": "../assets/image/009.png",
+    "cant": 1
+  },
+  {
+    "id": "010",
+    "descripcion": "Fernet",
+    "marca": "Branca", 
+    "presentacion": "750 ml",
+    "precio": 300,
+    "oferta": true,
+    "foto": "../assets/image/010.png",
+    "cant": 1
+  },
+  {
+    "id": "011",
+    "descripcion": "Gin",
+    "marca": "Alquimista", 
+    "presentacion": "500 ml",
+    "precio": 600,
+    "oferta": false,
+    "foto": "../assets/image/011.png",
+    "cant": 1
+  },
+  {
+    "id": "012",
+    "descripcion": "Gin",
+    "marca": "Gordons", 
+    "presentacion": "500 ml",
+    "precio": 600,
+    "oferta": false,
+    "foto": "../assets/image/012.png",
+    "cant": 1
+  },
+  {
+    "id": "013",
+    "descripcion": "Gin",
+    "marca": "Tanqueray", 
+    "presentacion": "750 ml",
+    "precio": 600,
+    "oferta": false,
+    "foto": "../assets/image/013.png",
+    "cant": 1
+  },
+  {
+    "id": "014",
+    "descripcion": "Licor",
+    "marca": "Jagermeifter", 
+    "presentacion": "700 ml",
+    "precio": 600,
+    "oferta": false,
+    "foto": "../assets/image/014.png",
+    "cant": 1
+  },
+  {
+    "id": "015",
+    "descripcion": "Ron Añejo Especial",
+    "marca": "Havana", 
+    "presentacion": "750 ml",
+    "precio": 800,
+    "oferta": false,
+    "foto": "../assets/image/015.png",
+    "cant": 1
+  },
+  {
+    "id": "016",
+    "descripcion": "Vodka",
+    "marca": "Smirnoff", 
+    "presentacion": "750 ml",
+    "precio": 600,
+    "oferta": true,
+    "foto": "../assets/image/016.png",
+    "cant": 1
+  }
+]
