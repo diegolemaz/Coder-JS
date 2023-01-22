@@ -1,5 +1,4 @@
 // --------------FETCH JSON ----------------
-
 let productos = [];
 fetch("../scripts/listado.json")
   .then((response) => {
@@ -11,6 +10,13 @@ fetch("../scripts/listado.json")
       productos[i] = data[i];
     }
   });
+
+// BIENVENIDA
+
+swal({
+  title: "Bienvenid@!", 
+  text: "Sitio para mayores de 18 años",
+  button: "Soy mayor"});
 
 // FUNCION CAMBIAR DE PRECIO DTO
 
@@ -52,7 +58,7 @@ function cardAHtml(arrayProd) {
                   ${array[i].presentacion}
               </h5>
               <h4>
-                 $ ${array[i].precio}
+                $ ${array[i].precio}
               </h4>
               
               <button id=${array[i].id} onclick="agragarProductoACarrito('${array[i].id}')" >

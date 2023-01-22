@@ -76,7 +76,14 @@ function eliminarProductoDelCarrito(id) {
 
 const botonVaciarCarrito = document.querySelector("#boton-vaciar");
 botonVaciarCarrito.addEventListener("click", () => {
-  vaciarCarrito();
+  
+  swal({
+    icon:"warning",
+    title: "Seguro que quiere eliminar todos los productos?", 
+   buttons: ["Cancelar","Aceptar"]})
+  .then((resp) => { 
+   if (resp === true) {vaciarCarrito()}})
+ 
 });
 
 function vaciarCarrito() {
@@ -86,3 +93,15 @@ function vaciarCarrito() {
   grabarCarrito(arrCarrito);
   carritoAHtml(arrCarrito);
 }
+
+// FINALIZAR COMPRA
+const botonFinalizarCompra = document.querySelector("#boton-finalizar");
+botonFinalizarCompra.addEventListener("click", () => {
+  
+  swal({
+    icon:"success",
+    title: "Gracias por tu compra", 
+    text: "A la brevedad recibirá un mail para proceder con el pago.",
+    button: "Ok"});
+  vaciarCarrito();
+});
