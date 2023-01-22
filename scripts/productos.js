@@ -130,16 +130,30 @@ setTimeout(() => {
 // setTimeout(() => {
 
 var encontrado = [];
-const botonBusqueda = document.querySelector("#boton-buscar");
-setTimeout(() => {
-  botonBusqueda.addEventListener("click", () => {
-    let productoBuscado = document.getElementById("#barraBusqueda").value;
-    encontrado = productos.filter(productoBuscado.toLocaleUpperCase());
-    encontrado.length == 0
-      ? (busqueda.innerHTML = "No se han encontrado productos.")
-      : cardAHtml(encontrado);
-  });
-}, 1000);
+// setTimeout(() => {
+
+const formBusqueda = document.querySelector("#form-busqueda");
+const inputBuscar = document.querySelector("#input-buscar");
+
+formBusqueda.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert(this.value);
+    formBusqueda.reset();
+});
+
+
+
+// const botonBusqueda = document.querySelector("#boton-buscar");
+// // const formBusqueda = documen.querySelector ("#form-busqueda");
+
+//   botonBusqueda.addEventListener("click", () => {
+//     let inputBuscar = document.getElementById("#input-buscar");
+//     alert(inputBuscar.value);
+
+//     encontrado = productos.filter(inputBuscar.toLocaleUpperCase());
+//     encontrado.length == 0 ? (busqueda.innerHTML = "No se han encontrado productos."): cardAHtml(encontrado);
+  // });
+// }, 1000);
 
 // CARRITO
 function obtenerCarrito() {
