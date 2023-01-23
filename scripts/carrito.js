@@ -41,7 +41,6 @@ function carritoAHtml() {
     }
     var mensajeCarrito = document.getElementById("totalCarrito");
     mensajeCarrito.innerHTML = `El total de su compra es $ ${totalCarrito}`;
-    console.log(totalCarrito);
   }
 }
 
