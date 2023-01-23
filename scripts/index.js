@@ -11,15 +11,14 @@ fetch("../scripts/listado.json")
     }
   });
 
-// BIENVENIDA
-
+// SWAL BIENVENIDA
 swal({
-  title: "Bienvenid@!", 
+  title: "Bienvenid@!",
   text: "Sitio para mayores de 18 años",
-  button: "Soy mayor"});
+  button: "Soy mayor",
+});
 
 // FUNCION CAMBIAR DE PRECIO DTO
-
 const cambiarPrecioDto = (dto) => {
   productos.forEach((producto) => {
     if (producto.oferta == true) {
@@ -28,19 +27,15 @@ const cambiarPrecioDto = (dto) => {
     }
   });
 };
-
 setTimeout(() => {
   cambiarPrecioDto(10);
 }, 1000);
 
 // IMPRIMIR TODOS LOS PRODUCTOS EN OFERTA
-function cardAHtml(arrayProd) {
+function cardAHtmlOferta(arrayProd) {
   const contenedor = document.querySelector(".listadoProductosOferta");
   contenedor.innerHTML = "";
-
-  //Busco los productos en oferta
   let array = arrayProd.filter((p) => p.oferta == true);
-
   for (let i = 0; i < array.length; i++) {
     const card = document.createElement("div");
     card.className = "card";
@@ -70,21 +65,23 @@ function cardAHtml(arrayProd) {
 }
 
 setTimeout(() => {
-  cardAHtml(productos);
+  cardAHtmlOferta(productos);
 }, 1000);
 
-// CARRITO
+// OBTENER CARRITO DEL LS
 function obtenerCarrito() {
   let jsonCarrito = localStorage.getItem("carrito");
   let arrCarrito = JSON.parse(jsonCarrito);
   return arrCarrito;
 }
 
+//GUARDAR CARITO EN EL LS
 function grabarCarrito(carritoDeCompra) {
   let jsonCarrito = JSON.stringify(carritoDeCompra);
   localStorage.setItem("carrito", jsonCarrito);
 }
 
+// AGREGAR PRODUCTO AL CARRITO
 function agragarProductoACarrito(id) {
   let prod = productos.find((p) => p.id == id);
   agregarAlCarrito(prod);
@@ -129,23 +126,7 @@ function agregarAlCarrito(producto) {
   }
 }
 
-// SWIPER
-
-// var swiper = new swiper(".mySwiper", {
-//   spaceBetween: 30,
-//   effect: "fade",
-//   navigation: {
-//     nextEl: ".swiper-button-next",
-//     prevEl: ".swiper-button-prev",
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//     clickable: false,
-//   },
-// });
-setTimeout(() => {
-  
-
+// CARROUSEL CON FOTOS
 var swiper = new Swiper(".mySwiper", {
   spaceBetween: 30,
   effect: "fade",
@@ -156,11 +137,6 @@ var swiper = new Swiper(".mySwiper", {
   },
   pagination: {
     el: ".swiper-pagination",
-    clickable: true,
+    clickable: false,
   },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-})
-}, 1000);
+});

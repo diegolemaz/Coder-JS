@@ -39,5 +39,3 @@ botonModoOscuro.addEventListener("click", () => {
     activarModoOscuro();
   }
 });
-
-// const cantidadCarrito = document.querySelector(#"cantidadCarrito");

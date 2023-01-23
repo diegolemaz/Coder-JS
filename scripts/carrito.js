@@ -2,23 +2,20 @@
 let carritoDeCompra = [];
 localStorage.setItem;
 
+// FUNCION CARRITO A HTML
 function carritoAHtml() {
   let array = obtenerCarrito();
   let totalCarrito = 0;
-
   const contenedor = document.querySelector(".listadoCarrito");
   contenedor.innerHTML = "";
   if (array.length == 0) {
     var mensaje = document.getElementById("carritoVacio");
     mensaje.innerHTML = "Su carrito se encuentra vacío!";
-   
-
     var botonEliminarCarrito = document.getElementById("boton-vaciar");
     botonEliminarCarrito.remove();
-
     var botonFinalizarCarrito = document.getElementById("boton-finalizar");
     botonFinalizarCarrito.remove();
-    var mensajeTotal = document.getElementById('totalCarrito');
+    var mensajeTotal = document.getElementById("totalCarrito");
     mensajeTotal.remove();
   } else {
     for (let i = 0; i < array.length; i++) {
@@ -26,41 +23,44 @@ function carritoAHtml() {
       tabla.className = "table";
       tabla.innerHTML = ` 
               <tr>
-              <td><img class="img-card" src=${array[i].foto} alt=${array[i].descripcion}</img></td>
+              <td><img class="img-card" src=${array[i].foto} alt=${
+        array[i].descripcion
+      }</img></td>
               <td>${array[i].descripcion}</td>
               <td>${array[i].marca}</td>
               <td>${array[i].presentacion}</td>
               <td> $ ${array[i].precio}</td>
               <td> Cantidad: ${array[i].cant}</td>
-              <td><button id {...array[i].id} onclick="eliminarProductoDelCarrito(${array[i].id.toString()})">Eliminar</button></td>
+              <td><button id {...array[i].id} onclick="eliminarProductoDelCarrito(${array[
+                i
+              ].id.toString()})">Eliminar</button></td>
               <tr>
               `;
       contenedor.appendChild(tabla);
-      
-     
-       totalCarrito = ((array[i].precio * array[i].cant)+ totalCarrito);
-       
-
+      totalCarrito = array[i].precio * array[i].cant + totalCarrito;
     }
-    var mensajeCarrito = document.getElementById('totalCarrito');
-      mensajeCarrito.innerHTML = `El total de su compra es $ ${totalCarrito}`;
-     console.log(totalCarrito);
+    var mensajeCarrito = document.getElementById("totalCarrito");
+    mensajeCarrito.innerHTML = `El total de su compra es $ ${totalCarrito}`;
+    console.log(totalCarrito);
   }
 }
+
 carritoAHtml();
 
+// FUNCION OBTENER CARRITO LS
 function obtenerCarrito() {
   let jsonCarrito = localStorage.getItem("carrito");
   let arrCarrito = JSON.parse(jsonCarrito);
   return arrCarrito;
 }
 
+// FUNCION GRABAR CARRITO LS
 function grabarCarrito(carritoDeCompra) {
   let jsonCarrito = JSON.stringify(carritoDeCompra);
   localStorage.setItem("carrito", jsonCarrito);
-
 }
 
+// ELIMINAR PRODUCTO
 function eliminarProductoDelCarrito(id) {
   let arrCarrito = obtenerCarrito();
   let prod = arrCarrito.find((p) => p.id == id);
@@ -72,29 +72,26 @@ function eliminarProductoDelCarrito(id) {
     },
   }).showToast();
   arrCarrito.splice(arrCarrito.indexOf(prod), 1);
-
   grabarCarrito(arrCarrito);
   carritoAHtml(arrCarrito);
 }
 
 // FUNCION ELIMINAR TODOS LOS ELEMENTOS DEL CARRITO
-
 const botonVaciarCarrito = document.querySelector("#boton-vaciar");
 botonVaciarCarrito.addEventListener("click", () => {
-  
   swal({
-    icon:"warning",
-    title: "Seguro que quiere eliminar todos los productos?", 
-   buttons: ["Cancelar","Aceptar"]})
-  .then((resp) => { 
-   if (resp === true) {vaciarCarrito()}})
- 
+    icon: "warning",
+    title: "Seguro que quiere eliminar todos los productos?",
+    buttons: ["Cancelar", "Aceptar"],
+  }).then((resp) => {
+    if (resp === true) {
+      vaciarCarrito();
+    }
+  });
 });
-
 function vaciarCarrito() {
   let arrCarrito = obtenerCarrito();
   arrCarrito.length = 0;
-
   grabarCarrito(arrCarrito);
   carritoAHtml(arrCarrito);
 }
@@ -102,11 +99,11 @@ function vaciarCarrito() {
 // FINALIZAR COMPRA
 const botonFinalizarCompra = document.querySelector("#boton-finalizar");
 botonFinalizarCompra.addEventListener("click", () => {
-  
   swal({
-    icon:"success",
-    title: "Gracias por tu compra", 
+    icon: "success",
+    title: "Gracias por tu compra",
     text: "A la brevedad recibirá un mail para proceder con el pago.",
-    button: "Ok"});
+    button: "Ok",
+  });
   vaciarCarrito();
 });

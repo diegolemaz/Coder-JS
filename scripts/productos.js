@@ -1,5 +1,4 @@
 // --------------FETCH JSON ----------------
-
 let productos = [];
 fetch("../scripts/listado.json")
   .then((response) => {
@@ -112,50 +111,31 @@ setTimeout(() => {
   let productosFiltradosOferta = productos.filter(mostrarProductosOferta);
   botonProductosOferta.addEventListener("click", () => {
     cardAHtml(productosFiltradosOferta);
-    console.log(productosFiltradosOferta);
   });
 }, 1000);
 
-// BUSCAR Y MOSTRAR PRIMER ELEMENTO
-
-// Mostrar input en alerta
-// const alertaForm = document.querySelector("#alerta-form");
-// const alertaInput = document.querySelector("#alerta-input");
-
-// alertaForm.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     alert(alertaInput.value);
-//     alertaForm.reset();
-// });
-// setTimeout(() => {
-
-var encontrado = [];
-// setTimeout(() => {
-
+// BUSCAR Y MOSTRAR PRODUCTOS
+let encontrado = [];
 const formBusqueda = document.querySelector("#form-busqueda");
-const inputBuscar = document.querySelector("#input-buscar");
+const inputBusqueda = document.querySelector("#input-busqueda");
 
 formBusqueda.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert(this.value);
-    formBusqueda.reset();
+  e.preventDefault();
+  encontrado = productos.filter((el) => {
+    let desc = el.descripcion.toLowerCase();
+    return desc.indexOf(inputBusqueda.value.toLowerCase()) >= 0;
+  });
+
+  if (encontrado.length == 0) {
+    busqueda.innerHTML = `No se han encontrado productos con ${inputBusqueda.value}`;
+  } else {
+    busqueda.innerHTML = `Resultados de: ${inputBusqueda.value}`;
+  }
+  cardAHtml(encontrado);
 });
+formBusqueda.reset();
 
-
-
-// const botonBusqueda = document.querySelector("#boton-buscar");
-// // const formBusqueda = documen.querySelector ("#form-busqueda");
-
-//   botonBusqueda.addEventListener("click", () => {
-//     let inputBuscar = document.getElementById("#input-buscar");
-//     alert(inputBuscar.value);
-
-//     encontrado = productos.filter(inputBuscar.toLocaleUpperCase());
-//     encontrado.length == 0 ? (busqueda.innerHTML = "No se han encontrado productos."): cardAHtml(encontrado);
-  // });
-// }, 1000);
-
-// CARRITO
+// MOSTRAR CARRITO Y DETALLES
 function obtenerCarrito() {
   let jsonCarrito = localStorage.getItem("carrito");
   let arrCarrito = JSON.parse(jsonCarrito);
